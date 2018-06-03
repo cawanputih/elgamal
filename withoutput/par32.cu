@@ -304,9 +304,9 @@ void writedekrip(ulint* m){
 	for (int i = 0; i < banyakdata; i++)
 	{
 		ulint temp = m[i];
-		fprintf(fp, "%c",  temp/1000000 );
-		fprintf(fp, "%c",  (temp/1000) % 1000 );
-		fprintf(fp, "%c",  temp % 1000);
+		fprintf(fp, "%c",  (unsigned char) (temp/1000000) );
+		fprintf(fp, "%c",  (unsigned char) ((temp/1000) % 1000) );
+		fprintf(fp, "%c",  (unsigned char) (temp % 1000));
 	}
 
 	fclose(fp);
