@@ -94,7 +94,7 @@ cudaError_t enkripsiCUDA(ulint *m, ulint *k, ulint g, ulint p, ulint y, ulint *r
 	cudaEventSynchronize(stop);
 	float milliseconds = 0;
 	cudaEventElapsedTime(&milliseconds, start, stop);
-	printf("\nDurasi enkripsi= %f ms\n", milliseconds);
+	printf("Durasi enkripsi= %f ms\n", milliseconds);
 
 	cudaStatus = cudaGetLastError();
 	if (cudaStatus != cudaSuccess) {
@@ -150,7 +150,7 @@ cudaError_t dekripsiCUDA(ulint *c, ulint p, ulint e, ulint *res2) {
 	cudaEventSynchronize(stop);
 	float milliseconds = 0;
 	cudaEventElapsedTime(&milliseconds, start, stop);
-	printf("\nDurasi enkripsi= %f ms\n", milliseconds);
+	printf("Durasi enkripsi= %f ms\n", milliseconds);
 
 	cudaStatus = cudaGetLastError();
 	if (cudaStatus != cudaSuccess) {
@@ -331,23 +331,23 @@ int main(){
 	// initenkripsi2(m, k);
 
 
-	printf("<<<<<<<<<<<<<<Pesan Asli>>>>>>>>>>>>>>>\n");
-	for (int i = 0; i < 4; i++) {
-		printf("m[%d] = %lu\n", i, m[i]);
-	}
+	// printf("<<<<<<<<<<<<<<Pesan Asli>>>>>>>>>>>>>>>\n");
+	// for (int i = 0; i < 4; i++) {
+	// 	printf("m[%d] = %lu\n", i, m[i]);
+	// }
 
-	printf("m[...]\n");
-	printf("m[%d] = %lu\n", banyakdata-1, m[banyakdata-1]);
+	// printf("m[...]\n");
+	// printf("m[%d] = %lu\n", banyakdata-1, m[banyakdata-1]);
 
 	enkripsiCUDA(m,k,g,p,y,res);
 
-	printf("<<<<<<<<<<<<<<Hasil Enkripsi>>>>>>>>>>>>>>>\n");
-	for (int i = 0; i < 4; i++) {
-		printf("c[%d] = %lu 	c[%d] = %lu\n", 2*i, res[2*i], 2*i+1, res[2*i+1]);
-	}
+	// printf("<<<<<<<<<<<<<<Hasil Enkripsi>>>>>>>>>>>>>>>\n");
+	// for (int i = 0; i < 4; i++) {
+	// 	printf("c[%d] = %lu 	c[%d] = %lu\n", 2*i, res[2*i], 2*i+1, res[2*i+1]);
+	// }
 
-	printf("c ...\n");
-	printf("c[%d] = %lu 	c[%d] = %lu\n", banyakdata * 2-2, res[banyakdata * 2-2], banyakdata *2-1,res[banyakdata*2-1]);
+	// printf("c ...\n");
+	// printf("c[%d] = %lu 	c[%d] = %lu\n", banyakdata * 2-2, res[banyakdata * 2-2], banyakdata *2-1,res[banyakdata*2-1]);
 
 	writecipher(res);
 
@@ -356,13 +356,13 @@ int main(){
 	e = p-x-1;
 	dekripsiCUDA(res3,p,e,res2);
 
-	printf("<<<<<<<<<<<<<<Hasil Dekripsi>>>>>>>>>>>>>>>\n");
-	for (int i = 0; i < 4; i++) {
-		printf("m[%d] = %lu\n", i, res2[i]);
-	}
+	// printf("<<<<<<<<<<<<<<Hasil Dekripsi>>>>>>>>>>>>>>>\n");
+	// for (int i = 0; i < 4; i++) {
+	// 	printf("m[%d] = %lu\n", i, res2[i]);
+	// }
 
-	printf("m[...]\n");
-	printf("m[%d] = %lu\n", banyakdata-1, res2[banyakdata-1]);
+	// printf("m[...]\n");
+	// printf("m[%d] = %lu\n", banyakdata-1, res2[banyakdata-1]);
 	writedekrip(res2);
 
 	free(m);
